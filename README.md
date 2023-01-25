@@ -1,6 +1,8 @@
 # checkmk-race
 unauthenticated (2.1.0 - 2.1.0.p11) / authenticated (&lt;2.1.0p12) RCE exploit for Checkmk.
 
+SSRF->LQL Injection->Arb File Deletion->Race Condition->Arb File Read->Code Injection->WIN
+
 ------------------
 ![Screenshot 2023-01-25 at 12 08 22](https://user-images.githubusercontent.com/36970331/214548498-e642dd6c-d7a4-47ec-b37f-df5efcf34529.png)
 
